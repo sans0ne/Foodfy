@@ -36,7 +36,7 @@ module.exports = {
                        GROUP BY chefs.id`
 
         db.query(query,[id],function(err,results){
-            if(err) throw `erro metodo findchefs ${err}`
+            if(err) throw `Database error ${err}`
 
             callback(results.rows[0])
         })

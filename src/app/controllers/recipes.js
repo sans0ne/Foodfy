@@ -23,9 +23,12 @@ exports.receitas = (req,res)=>{
         limit,
         offset,
         callback(recipes){
+            
+            let total=0
+            if(recipes.length > 0) total = Math.ceil(recipes[0].total / limit)
 
             const pagination = {
-                total: Math.ceil(recipes[0].total / limit),
+                total,
                 page
             }
             return res.render('receitas',{recipes,pagination,filter})
