@@ -1,0 +1,48 @@
+{% extends 'layout.njk' %}
+   
+{% block content %}
+
+    <form id='filter' action="/receitas" method="get">
+        <input
+            type="text"
+            name='filter'
+            placeholder='Buscar uma receita'
+            value='{{filter}}'
+        >
+        <button type="submit">Buscar</button>
+    </form>
+
+    <div class="buscando-por">
+        <h1>Buscando por {{filter}}</h1>
+    </div>
+
+    <section class="pratos-receitas">
+    
+        {%for recipe in recipes%}
+
+            <div class="prato">
+                <div class="prato-img">
+                    <a href="/receitas-detalhes/{{recipe.id}}">
+                        <img src="{{recipe.image}}" alt="Imagem de {{recipe.title}}">
+                    </a>
+                </div>
+                <div class="prato-info">
+                    <h2>{{recipe.title}}</h2>
+                </div>
+                <div class="prato-chef">
+                    <h3>por {{recipe.chef_name}}</h3>
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </section>
+    
+    <div
+        class="pagination"
+        data-page='{{pagination.page}}'
+        data-total='{{pagination.total}}'
+        data-filter='{{filter}}'
+    ></div>
+
+{% endblock %}

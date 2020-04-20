@@ -1,0 +1,34 @@
+{% extends 'admin/recipes/layout.njk' %}
+
+{% block content %}
+
+<div class='cabecalho_show'>
+    <h1>Receita: {{recipe.title}}</h1>
+    <a href="/admin/recipes/{{recipe.id}}/edit">Editar Receita</a>
+</div>
+
+<img id='pagina_show' src="{{recipe.image}}" alt="Imagem de {{recipe.title}}">
+
+<div class='titulo-meio_show'>
+    <h2>{{recipe.title}}</h2>
+    <h3>por {{recipe.chef_name}}</h3>
+</div>
+
+<div class="descricao_show">
+    <h1>Ingredientes</h1>
+    <ul>
+        {% for ingredient in recipe.ingredients %}
+            <li>{{ingredient}}</li>
+        {% endfor %}
+    </ul>
+    <h1>Modo de preparo</h1>
+    <ul>
+        {% for preparation in recipe.preparation %}
+            <li>{{preparation}}</li>
+        {% endfor %}
+    </ul>
+    <h1>Informações Adicionais</h1>
+    <p>{{recipe.information}}</p>
+</div>
+
+{% endblock content %}

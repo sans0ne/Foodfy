@@ -1,0 +1,37 @@
+{% extends 'admin/recipes/layout.njk' %}
+
+{% block content %}
+
+    <div class="cabecalho-show">
+        <h1>Chef: {{chef.name}}</h1>
+        <a href="/admin/chefs/{{chef.id}}/edit">Editar Chef</a>
+    </div>
+
+    <div class="meio-show">
+    
+        <img src="{{chef.avatar_url}}" alt="Imagem de {{chef.name}}">
+        <h2>{{chef.name}}</h2>
+        <h3>{{chef.total_recipes}} receitas</h3>
+
+    </div>
+
+    <h1>Receitas</h1>
+
+    <div class="receitas-show">
+
+        {% for recipe in recipes %}
+            <div class='receitas-container'>
+                <img src="{{recipe.image}}" alt="Imagem de {{recipe.title}}">
+                <div class='receitas-show-detalhes'>
+                    <h2>{{recipe.title}}</h2>
+                    <h3>por {{recipe.name}}</h3>
+                    <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
+                </div>
+            </div>    
+        {% endfor %}
+
+
+    </div>
+
+
+{% endblock content %}

@@ -1,0 +1,50 @@
+{% extends 'layout.njk' %}
+
+{% block content %}
+
+    <section class="receitas-detalhes">
+
+        <div class="img-detalhe">
+            <img src="{{recipe.image}}" alt="Imagem de {{recipe.title}}">
+        </div>
+
+        <section class="detalhes">
+            <div class="prato-info-detalhes">
+                <h1>{{recipe.title}}</h1>
+            </div>
+            <div class="prato-chef-detalhes">
+                <h3>por {{recipe.chef_name}}</h3>
+            </div>
+        </section>
+
+        <div class="titulos">
+            <div class='topico'>Ingredientes</div>
+            <div class="esconder">ESCONDER</div>
+            <ul class="ingredientes">
+                {%for item in recipe.ingredients%}
+                    <li>{{item}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="titulos preparo">
+            <div class='topico'>Modo de preparo</div>
+            <div class="esconder">ESCONDER</div>
+            <ul class="ingredientes preparo">
+                {%for item1 in recipe.preparation%}
+                    <li>{{item1}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="titulos adicionais">
+            <div class='topico'>Informações Adicionais</div>
+            <div class="esconder">ESCONDER</div>
+            <p id='information' class=''>{{recipe.information}}</p>
+        </div>
+
+    </section>
+
+    <script src="/esconder.js"></script>
+
+{% endblock %}

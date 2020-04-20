@@ -1,0 +1,19 @@
+{% extends 'admin/recipes/layout.njk' %}
+
+{% block content %}
+
+<div class="form_edit">
+
+    <section class="forms">
+    
+        <h1>Criando Chef</h1>
+
+        <form method="POST" action="/admin/chefs">
+            {% include 'admin/chefs/fields.njk'%}
+        </form>
+
+    </section>
+    
+</div>
+
+{% endblock content %}
