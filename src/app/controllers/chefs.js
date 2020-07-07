@@ -1,34 +1,53 @@
+const fs = require('fs')
+const filesModel = require('../models/filesModel')
 const chefsModel = require('../models/chefsModel')
+const recipeModel = require('../models/recipeModel')
 
 module.exports = {
-    index(req,res){
-        chefsModel.all(function(chefs){
-            return res.render('admin/chefs/index',{chefs})
-        })
+    async index(req,res){
+        const results = await chefsModel.all()
+        const chefs = results.rows.map(chef =>({
+            ...chef,
+            src:`${req.protocol}://${req.headers.host}${chef.path.replace('public','')}`
+        }))
+
+
+        return res.render('admin/chefs/index',{chefs})
     },
-    show(req,res){
-        const { id } = req.params
+    async show(req,res){
+        const {id} = req.params
 
-        chefsModel.findChefs(id,function(chef){
+        let results = await chefsModel.findChefs(id)
+        const chef = results.rows[0]
 
-            chefsModel.countRecipes(id,function(recipes){
-                return res.render('admin/chefs/show',{recipes,chef})
-            })
-        })    
+        chef.src = `${req.protocol}://${req.headers.host}${chef.path.replace('public','')}`
+
+        results = await chefsModel.countRecipes(id) //ver coluna recipe.image que tirei desta consulta
+        const recipes = results.rows
+
+        const recipesPromise = recipes.map( async recipe =>{
+            const file = await recipeModel.findFile(recipe.id)
+            recipe.src = `${req.protocol}://${req.headers.host}${file.rows[0].path.replace('public','')}`
+        })
+
+        await Promise.all(recipesPromise)
+
+        return res.render('admin/chefs/show',{recipes,chef})
     },
     create(req,res){
         return res.render('admin/chefs/create')
     },
-    edit(req,res){
+    async edit(req,res){
         const {id} = req.params
 
-        chefsModel.findChefs(id,function(chef){
-            if(!chef) return res.send('Chef not found')    
+        let results = await chefsModel.findChefs(id)
+        const chef = results.rows[0]
 
-            return res.render('admin/chefs/edit',{chef})
-        })
+        chef.src = `${chef.path}`
+
+        return res.render('admin/chefs/edit',{chef})
     },
-    post(req,res){
+    async post(req,res){
         const keys = Object.keys(req.body)
         let objetos = []
 
@@ -40,21 +59,56 @@ module.exports = {
         if(objetos.length != 0){
             return res.send(`Preencha os campos ${objetos}`)
         }
-        chefsModel.create(req.body,function(){
-            res.redirect(`/admin/chefs`)
-        })
+
+        if(!req.file){
+            return res.send('Envie uma imagem para o avatar')
+        }
+            
+        const file = req.file
+        let results = await filesModel.create({...file})
+        const fileId = results.rows[0].id
+        
+        await chefsModel.create(req.body,fileId)
+
+        return res.redirect(`/admin/chefs`)
     },
-    update(req,res){
-        chefsModel.update(req.body,function(){
-            return res.redirect(`/admin/chefs/${req.body.id}`)
-        })
+    async update(req,res){
+        
+        let results = await chefsModel.findAvatar(req.body.id)
+        let fileId = results.rows[0].file_id
+
+        if(req.file){
+            
+            const file = req.file
+            results = await filesModel.create({...file})
+            const newfileId = results.rows[0].id
+            await chefsModel.update(req.body,newfileId)
+            
+            try{
+                await filesModel.deletefromFiles(fileId)
+            }catch(err){
+                console.log(`erro ao deletar ${err}`)
+            }
+
+        }else{
+            await chefsModel.update(req.body,fileId)
+        }
+        
+
+        return res.redirect(`/admin/chefs/${req.body.id}`)
         
     },
-    delete(req,res){
+    async delete(req,res){
         const {id} = req.body
 
-        chefsModel.delete(id,function(chef){
-            return res.redirect('/admin/chefs')
+        const results = await chefsModel.findAvatar(id)
+
+        fs.unlink(results.rows[0].path,(err)=>{
+            if(err) console.log(`erro ao deletar chef ${err}`)
         })
+
+        await chefsModel.delete(id)
+
+        return res.redirect('/admin/chefs')
     }
 }

@@ -8,7 +8,7 @@
     
         <h1>Editando Chef</h1>
 
-        <form method="POST" action="/admin/chefs?_method=PUT">
+        <form method="POST" action="/admin/chefs?_method=PUT" enctype='multipart/form-data'>
             {% include 'admin/chefs/fields.njk'%}
             <input type="hidden" name="id" value='{{chef.id}}'>
         </form>

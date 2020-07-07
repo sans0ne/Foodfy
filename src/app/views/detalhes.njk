@@ -4,9 +4,22 @@
 
     <section class="receitas-detalhes">
 
-        <div class="img-detalhe">
-            <img src="{{recipe.image}}" alt="Imagem de {{recipe.title}}">
+        <div class='img-detalhe'>
+            <img id='pagina_show' src="{{files[0].src}}" alt="Imagem de {{recipe.title}}">
         </div>
+
+        <div class="array-photos">
+            {% for file in files %}
+                <div>
+                    <img 
+                        src="{{file.src}}"
+                        alt="Imagem de {{recipe.title}}"
+                        onclick='setImage(event)'
+                    >
+                </div>
+            {% endfor %}
+        </div>
+
 
         <section class="detalhes">
             <div class="prato-info-detalhes">

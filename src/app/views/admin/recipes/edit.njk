@@ -8,12 +8,12 @@
 
         <h1>Editando Receita</h1>
       
-        <form id='put' method="POST" action="/admin/recipes/{{recipe.id}}/edit?_method=PUT" >    
+        <form id='put' method="POST" action="/admin/recipes/{{recipe.id}}/edit?_method=PUT" enctype='multipart/form-data' >    
             {% include 'admin/recipes/fields.njk'%}
             <input type="hidden" name="id" value="{{recipe.id}}">
         </form>
     
-        <form id='delete' method="POST" action="/admin/recipes/{{recipe.id}}/edit?_method=DELETE" >    
+        <form id='delete' method="POST" action="/admin/recipes/{{recipe.id}}/edit?_method=DELETE" enctype='multipart/form-data'>    
             <button id='btn-deletar'type="submit">Deletar</button>
             <input type="hidden" name="id" value="{{recipe.id}}">
         </form>

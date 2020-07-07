@@ -9,7 +9,7 @@
 
     <div class="meio-show">
     
-        <img src="{{chef.avatar_url}}" alt="Imagem de {{chef.name}}">
+        <img src="{{chef.src}}" alt="Imagem de {{chef.name}}">
         <h2>{{chef.name}}</h2>
         <h3>{{chef.total_recipes}} receitas</h3>
 
@@ -21,7 +21,7 @@
 
         {% for recipe in recipes %}
             <div class='receitas-container'>
-                <img src="{{recipe.image}}" alt="Imagem de {{recipe.title}}">
+                <img src="{{recipe.src}}" alt="Imagem de {{recipe.title}}">
                 <div class='receitas-show-detalhes'>
                     <h2>{{recipe.title}}</h2>
                     <h3>por {{recipe.name}}</h3>

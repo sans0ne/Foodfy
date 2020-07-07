@@ -125,7 +125,33 @@ footer{
     margin-left: 200px;
 }
 .receitas-detalhes .img-detalhe img{
+    width: 940px;
+    height: 280px;
+    object-fit: cover;
     border-radius: 15px;
+}
+div.array-photos{
+    display: flex;
+    justify-content: flex-end;
+    width: 940px;
+}
+div.array-photos div{
+    margin-right: 5px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+div.array-photos div:last-child{
+    margin-right: 0;
+}
+div.array-photos div:first-child img{
+    opacity: 1;
+}
+div.array-photos img{
+    opacity: .6;
+    border-radius: 3px;
+    width: 100%;
+    height: 100%;
 }
 section.detalhes{
     display: flex;
@@ -174,10 +200,12 @@ ul.ingredientes.preparo{
     color: #444444;
     width: 100%;
     max-width: 940px;
+    transition-duration: .5;
 }
 .hide{
-    visibility: hidden;
-    opacity: 0;
+    display:none
+    /* visibility: hidden;
+    opacity: 0; */
 }
 #information{
     margin-top: 20px;

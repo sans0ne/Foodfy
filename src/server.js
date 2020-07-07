@@ -18,6 +18,6 @@ nunjuncks.configure('src/app/views',{
     noCache:true
 })
 
-server.listen(5000,function(){ 
-    console.log('server is running')
+server.listen(process.env.PORT,function(){ 
+    console.log(`server is running on port ${process.env.PORT}`)
 })

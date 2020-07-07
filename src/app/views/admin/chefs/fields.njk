@@ -10,13 +10,25 @@
 
 <div class="item meio">
     <div>Avatar</div>
-    <div>
+    {% if chef %}
+        <div>
+            <input
+                type="text"
+                name=""
+                value='{{chef.src}}' disabled='disabled'>
+        </div>
+    {% endif %}
+    <div class="imagechef-input">
         <input
-            type="text"
-            name="avatar_url"
-            placeholder='http://'
-            value='{{chef.avatar_url}}'>
+            class='input-file'
+            type="file"
+            name="image"
+            accept='image/*'
+            onchange='PhotoUploadChefs.handleFileInput(event)'
+        >
+        <span>Enviar Avatar</span>
     </div>
 </div>
+
 
 <button id='btn-salvar' type="submit">Salvar Chef</button>

@@ -6,7 +6,7 @@
         <input
             type="text"
             name='filter'
-            placeholder='Buscar uma receita'
+            placeholder='Nome da receita'
             value='{{filter}}'
         >
         <button type="submit">Buscar</button>
@@ -23,7 +23,7 @@
             <div class="prato">
                 <div class="prato-img">
                     <a href="/receitas-detalhes/{{recipe.id}}">
-                        <img src="{{recipe.image}}" alt="Imagem de {{recipe.title}}">
+                        <img src="{{recipe.src}}" alt="Imagem de {{recipe.title}}">
                     </a>
                 </div>
                 <div class="prato-info">

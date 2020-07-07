@@ -2,32 +2,38 @@
 
 {% block content %}
 
-        <div class="apresentacao">
-            <div class="apresentacao-textos">
-                <h1>As melhores receitas</h1>
-                <p>Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.</p>
+    <form id='filter' action="/" method="get">
+        <input type="text" name='filter' placeholder='Nome da receita' value='{{filter}}'>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <div class="apresentacao">
+        <div class="apresentacao-textos">
+            <h1>As melhores receitas</h1>
+            <p>Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.</p>
+        </div>
+        <img src="/assets/119236-OQ05QX-268.png" alt="garcom">
+    </div>
+
+    <div id="mais-acessadas">
+        <h1>Últimas Criações</h1>
+    </div>
+
+    <section class="pratos">
+
+        {% for recipe in recipes %}
+
+            <div class="prato">
+
+                <img src="{{recipe.src}}" alt="Imagem de {{recipe.title}}">
+                <h2>{{recipe.title}}</h2>
+                <h3>por
+                    {{recipe.chef_name}}</h3>
+
             </div>
-            <img src="/assets/119236-OQ05QX-268.png" alt="garcom">
-        </div>
 
-        <div id="mais-acessadas">
-            <h1>Mais acessadas</h1>
-        </div>
+        {% endfor %}
 
-        <section class="pratos">
-
-            {% for recipe in recipes %}
-
-                <div class="prato">
-
-                    <img src="{{recipe.image}}" alt="Imagem de {{recipe.title}}">
-                    <h2>{{recipe.title}}</h2>
-                    <h3>por {{recipe.chef_name}}</h3>
-
-                </div>
-
-            {% endfor %}
-
-        </section> 
+    </section>
 
 {% endblock %}

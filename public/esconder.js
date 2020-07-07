@@ -1,7 +1,5 @@
 const esconder = document.querySelectorAll('.esconder')
 
-
-
 for(let items of esconder){
     items.addEventListener('click',function(){
         if(items.innerHTML == 'ESCONDER'){
@@ -13,18 +11,3 @@ for(let items of esconder){
         }
     })
 }
-// let content = ''
-// for(let i=0;i<=esconder.length;i++){
-//     esconder[i].addEventListener('click',function(){
-//         if(esconder[i].innerHTML == 'ESCONDER'){
-//             esconder[i].innerHTML = 'MOSTRAR'
-//             content = esconder[i].nextElementSibling.innerHTML
-//             esconder[i].nextElementSibling.innerHTML = ''
-            
-//         }else if (esconder[i].innerHTML == 'MOSTRAR'){
-//             esconder[i].innerHTML = 'ESCONDER'
-//             esconder[i].nextElementSibling.innerHTML = content
-//             content=''
-//         }
-//     })
-// }

@@ -7,7 +7,20 @@
     <a href="/admin/recipes/{{recipe.id}}/edit">Editar Receita</a>
 </div>
 
-<img id='pagina_show' src="{{recipe.image}}" alt="Imagem de {{recipe.title}}">
+<img id='pagina_show' src="{{files[0].src}}" alt="Imagem de {{recipe.title}}">
+
+<div class="array-photos">
+    {% for file in files %}
+        <div>
+            <img 
+                src="{{file.src}}"
+                alt="Imagem de {{recipe.title}}"
+                onclick='setImage(event)'
+            >
+        </div>
+    {% endfor %}
+</div>
+
 
 <div class='titulo-meio_show'>
     <h2>{{recipe.title}}</h2>

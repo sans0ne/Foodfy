@@ -9,15 +9,34 @@
 </div>
 
 <div class="item meio">
-    <div>Imagem da receita-URL</div>
-    <div>
-        <input
-            type="url"
-            name="image"
-            placeholder="http://"
-            value='{{recipe.image}}'
-        >
-    </div>
+    <div>Imagem da receita</div>
+    <div class='image-container'>
+        <div id='image-input'>
+            <input
+                class='input-file'
+                type="file"
+                name="image"
+                multiple
+                accept='image/*'
+                onchange='PhotoUpload.handleFileInput(event)'
+            >
+            <i class="material-icons">add</i>
+        </div>
+        <div class="image-preview">
+            {% if files %}
+                {% for image in files %}
+                    <div class="image" id='{{image.id}}'>
+                        <img src="{{image.src}}" alt="{{image.name}}">
+                        <i 
+                            class="material-icons"
+                            onclick='PhotoUpload.removeOldPhoto(event)'
+                        >close</i>
+                    </div>
+                {% endfor %}
+                <input type="hidden" name="removed_files">
+            {% endif %}
+        </div>
+    </div>   
 </div>
 
 <div class="item meio">
@@ -31,17 +50,6 @@
         </select>
     </div>
 </div>
-
-{# <div class="item meio">
-    <div>Chef</div>
-    <div>
-        <select name="chef">
-            {% for chef in chefs %}
-                <option value="{{chef.id}}">{{chef.name}}</option>
-            {% endfor %}
-        </select>
-    </div>
-</div> #}
 
 <div id='ingredients' class="item meio">
     <div>Ingredientes</div>
