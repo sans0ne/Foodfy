@@ -1,0 +1,52 @@
+{% extends 'admin/recipes/layout.njk' %}
+
+{%block content%}
+
+<section class="form-users">
+  <form action="/admin/users?_method=PUT" method="post">
+      
+    <div class="userheader">
+      <h1>Bem vindo(a) {{user.name}}</h1>
+      <div>
+        <button type="submit">Salvar</button>
+      </div>
+    </div>
+    
+    <input type="hidden" name="id" value='{{user.id}}'>
+
+    <div class="userinputs">
+      <div>
+        <label for="username">Nome</label>
+        <input 
+          type="text" 
+          name='username' 
+          id='username' 
+          placeholder='Digite o nome completo'
+          value='{{user.name}}'
+        >
+      </div>
+      <div>
+        <label for="useremail">Email</label>
+        <input 
+          type="email" 
+          name="useremail" 
+          id="useremail" 
+          placeholder='Digite o email'
+          value='{{user.email}}'  
+        >
+      </div>
+      <div>
+        <label for="userpassword">Senha</label>
+        <input 
+          type="password" 
+          name="password" 
+          id="password" 
+          placeholder='Digite sua senha para atualizar'
+        >
+      </div>
+    </div>
+
+  </form>
+</section>
+
+{% endblock content %}

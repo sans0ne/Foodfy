@@ -15,21 +15,33 @@ header{
     background-color: black;
     padding: 20px;
     width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+header div{
+    width: 60%;
     display: flex;
     align-items: center;
+}
+form button#sair{
+    background-color: inherit;
+    color: #ffffff;
+    font-size: 15px;
+    font-family: 'Helvetica', sans-serif;
+    cursor: pointer;
 }
 header a{
     text-decoration: none;
     color: #ffffff;
     font-size: 15px;
     font-family: 'Roboto', sans-serif;
+    margin-right: 15px;
 }
-header a:last-child{
-    margin-left: 30px;
-}
+
 img.cabecalho{
     margin-left: 182px;
-    margin-right: 60px;
+    margin-right: 40px;
 }
 h1{
     margin-top: 30px;
@@ -466,3 +478,94 @@ div.chefs img{
     color: var(--primary-color);
     text-decoration: none;
 }
+/*==CREATE USERS==*/
+section.form-users form{
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+section.form-users form div.userheader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+section.form-users form div.input-adm{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+section.form-users form div.input-adm,
+section.form-users form div.userinputs{
+    font-family: 'Helvetica';
+    font-weight: bold;
+    font-size: 16px;
+}
+section.form-users form div.userinputs{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+section.form-users form div.userinputs input{
+    width: 450px;
+    height: 49px;
+    margin: 20px 0;
+}
+section.form-users form div.userinputs div{
+    display: flex;
+    flex-direction: column;
+}
+section.form-users form div.input-adm input[type='checkbox']{
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+}
+div.userheader h1{
+    margin-left: 0;
+    font-family: 'Helvetica';
+    font-weight: bold;
+    font-size: 24px;
+}
+div.userheader button{
+    width: 139px;
+    height: 37px;
+    border-radius: 4px;
+    font-family: 'Helvetica';
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+}
+div.userheader button[type='submit']{
+    background-color: var(--primary-color);
+    cursor: pointer;
+}
+div.userheader button#cancelar{
+    background-color: #8a8a8a;
+    cursor: pointer;
+}
+/* MENSAGENS DE ERRO */
+@keyframes hidemessage{
+    to{
+        top: -50px;
+        opacity: 0;
+    }
+  }
+  .messages{
+    display: flex;
+    justify-content: center;
+    padding: 16px;
+    position: absolute;
+    width: 100%;
+    color: white;
+    top: 0;
+    opacity: 1;
+    animation: hidemessage 400ms 3s ease-out forwards;
+  }
+  .messages.error{
+    background-color: #e74c3c;
+  }
+  .messages.success{
+    background-color: rgb(122,182,30);
+  }

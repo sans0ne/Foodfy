@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href='/session.css'>
+  <title>Foodfy</title>
+</head>
+<header>
+  <div class="header">Foodfy</div>
+</header>
+<body>
+
+  {%include 'admin/parts/messages.njk'%}
+  
+  <section class='form'>
+    <h1>Iniciar Sessão</h1>
+      <form action="/admin/login" method="post">
+        <label for='email'>Email</label>
+        <input 
+          type="email" 
+          name="email" 
+          id="email"
+          placeholder='Digite seu email'  
+          value={{user.email}}
+        >
+        <label for="password">Senha</label>
+        <input 
+          type="password" 
+          name="password" 
+          id="password"
+          placeholder='Digite sua senha'  
+        >
+        <div class="form-footer">
+          <a href="#">Perdeu a senha ?</a>
+          <button type="submit">Acessar</button>
+        </div>
+
+      </form>
+
+  </section>
+</body>
+</html>

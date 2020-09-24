@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+*{
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  box-sizing: border-box;
+  
+}
+body{
+  width: 100vw;
+  height: 100vh;
+}
+header{
+  padding: 20px;
+}
+div.header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  letter-spacing: 1.65px;
+  font-family:'Roboto', sans-serif ;
+}
+h1{
+  font-family: 'Helvetica';
+  font-weight: bold;
+  text-align: center;
+  margin-top: 60px;
+}
+section{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+form{
+  display: flex;
+  flex-direction: column;
+}
+label{
+  font-family: 'Helvetica';
+  font-weight: bold;
+  font-size: 16px;
+  margin: 10px 0;
+}
+form input{
+  border: 1px solid gray;
+  height: 49px;
+  width: 500px;
+}
+div.form-footer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+div.form-footer a{
+  text-decoration: none;
+  font-size: 16px;
+  font-family: 'Helvetica';
+  font-weight: bold;
+  font-size: 16px;
+  color:#969696;
+}
+button{
+  background-color: #6558C3;
+  width: 134px;
+  height: 37px;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+/* MENSAGENS DE ERRO */
+@keyframes hidemessage{
+  to{
+      top: -50px;
+      opacity: 0;
+  }
+}
+.messages{
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+  position: absolute;
+  width: 100%;
+  color: white;
+  top: 0;
+  opacity: 1;
+  animation: hidemessage 400ms 3s ease-out forwards;
+}
+.messages.error{
+  background-color: #e74c3c;
+}
+.messages.success{
+  background-color: rgb(122,182,30);
+}

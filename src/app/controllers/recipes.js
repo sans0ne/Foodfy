@@ -149,15 +149,15 @@ exports.post = async (req,res) =>{
 
     for(let key of keys){
 
-        if(req.body[key] == '' && key != 'removed_files'){
+        if(req.body[key] === '' && key !== 'removed_files'){
             obj.push(key)
         }
     }
-    if(obj.length!=0){
+    if(obj.length!==0){
         return res.send(`Preencha os campos ${obj}`)
     }
 
-    if(req.files.length == 0){
+    if(req.files.length === 0){
         return res.send('Envie pelo menos uma imagem')
     }
 
@@ -180,17 +180,20 @@ exports.put = async (req,res) =>{
     let objetos = []
 
     for (let key of keys) {
-        if (req.body[key] == '' && key != 'removed_files')
+        if (req.body[key] === '' && key !== 'removed_files')
             objetos.push(key)
     }
 
-    if (objetos.length != 0) {
+    if (objetos.length !== 0) {
         return res.send(`Preencha os campos ${obj}`)
     }
 
-    if (req.files.length != 0) {
+    if(req.body.removed_files.length !== 0){
+        return res.send('Envie pelo menos uma imagem')
+    }
+    if (req.files.length !== 0) {
         const newsFilesPromise = req.files.map(async file => {
-            filesModel.create({ ...file })
+            await filesModel.create({ ...file })
             const results = await filesModel.find(file.filename)
             const fileId = results.rows[0].id
             recipe_filesModel.create(req.body.id, fileId)

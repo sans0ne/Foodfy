@@ -1,0 +1,48 @@
+{% extends 'admin/recipes/layout.njk' %}
+
+{%block content%}
+
+<section class="form-users">
+  <form action="/admin/users" method="post">
+    {# vai ter que mudar a URL desse action #}
+    
+    <div class="userheader">
+      <h1>Criar Usuário</h1>
+      <div>
+        <button type="submit">Salvar</button>
+        <button id='cancelar'>Cancelar</button>
+      </div>
+    </div>
+    
+    <div class="userinputs">
+      <div>
+        <label for="username">Nome</label>
+        <input 
+          type="text" 
+          name='username' 
+          id='username' 
+          placeholder='Digite o nome completo'
+          value={{user.username}}
+        >
+      </div>
+      <div>
+        <label for="useremail">Email</label>
+        <input 
+          type="email" 
+          name="useremail" 
+          id="useremail" 
+          placeholder='Digite o email'
+          value={{user.useremail}}  
+        >
+      </div>
+    </div>
+
+    <div class='input-adm'>
+      <input type="checkbox" name="administrador" id="administrador">
+      <label for="administrador">Administrador</label>
+    </div>
+
+  </form>
+</section>
+
+{% endblock content %}
